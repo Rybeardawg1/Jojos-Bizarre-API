@@ -5,3 +5,4 @@ cached_lm_GPT2Tokenizer_128_data.txt
 data.txt
 output_dir/
 fine_tuned_model/
+jojo-gpt2/
