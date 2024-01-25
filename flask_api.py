@@ -17,13 +17,14 @@ def favicon():
         app.root_path, "JojosbizarreAPI.png", mimetype="image/vnd.microsoft.icon"
     )
 
+
 class CreateResponse(Resource):
     def get(self, input):
         input_ids = tokenizer.encode(input, return_tensors="pt")
 
         print("generating output")
         output = model.generate(
-            input_ids, 
+            input_ids,
             max_length=30,
             num_beams=1,
             no_repeat_ngram_size=2,
@@ -81,4 +82,4 @@ api.add_resource(GetCatchPhrase, "/")
 api.add_resource(CreateResponse, "/<string:input>")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
