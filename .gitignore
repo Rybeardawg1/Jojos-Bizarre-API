@@ -8,3 +8,4 @@ fine_tuned_model/
 jojo-gpt2/
 target/
 cargo.lock
+*.pyc

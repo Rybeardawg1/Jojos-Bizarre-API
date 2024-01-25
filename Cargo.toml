@@ -1,5 +1,5 @@
 [package]
-name = "Jojos_API" 
+name = "jojos_api" 
 version = "0.1.0" 
 author = "Rybeardawg1"
 edition = "2021"

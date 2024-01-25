@@ -1,4 +1,4 @@
-use axum::{ routing::get, response::Json, Router };
+use axum::{ routing::get, response::Json, Router, http::{ Response, StatusCode } };
 use rand::seq::SliceRandom;
 use tokio::fs;
 use serde_json::{ json, to_string_pretty, Value };
@@ -6,7 +6,12 @@ use serde_json::{ json, to_string_pretty, Value };
 #[tokio::main]
 async fn main() {
     // Build the Axum application
-    let app = Router::new().route("/", get(get_catchphrase));
+    let app = Router::new()
+        .route(
+            "/JojosbizarreAPI.png",
+            get(|| async { Response::new(StatusCode::OK) })
+        )
+        .route("/", get(get_catchphrase));
 
     // Start the server
     axum::Server
@@ -16,7 +21,7 @@ async fn main() {
 }
 
 // Get random catchphrase
-async fn get_catchphrase() -> Output<String> {
+async fn get_catchphrase() -> Json<String> {
     let catchphrases = read_catchphrases().await;
 
     let hint =
@@ -33,9 +38,9 @@ async fn get_catchphrase() -> Output<String> {
             "Hint": hint
         });
         let pretty_json = to_string_pretty(&json_value).expect("Failed to format JSON");
-        Output(pretty_json)
+        Json(pretty_json)
     } else {
-        Output(
+        Json(
             json!({
             "Message": "Catchphrases not found",
             "Hint": hint
@@ -46,25 +51,25 @@ async fn get_catchphrase() -> Output<String> {
 }
 
 // Generate response based on input
-// async fn create_response(path: axum::extract::Path<String>) -> Json<Value> {
-//     let model = tch::CModule::load("jojo-gpt2/").expect("Failed to load model");
-//     let tokenizer = tch::CModule::load("jojo-gpt2/").expect("Failed to load tokenizer");
+async fn create_response(path: axum::extract::Path<String>) -> Json<Value> {
+    let model = tch::CModule::load("jojo-gpt2/").expect("Failed to load model");
+    let tokenizer = tch::CModule::load("jojo-gpt2/").expect("Failed to load tokenizer");
 
-//     let input = path.as_str().to_string();
-//     let input_ids = tokenizer.encode(&input, false).to_device(tch::Device::cuda_if_available());
+    let input = path.as_str().to_string();
+    let input_ids = tokenizer.encode(&input, false).to_device(tch::Device::cuda_if_available());
 
-//     println!("Generating output");
-//     let output = model.forward_ts(&[input_ids], false).unwrap().to_device(tch::Device::Cpu);
-//     let output = output.argmax(-1, false);
+    println!("Generating output");
+    let output = model.forward_ts(&[input_ids], false).unwrap().to_device(tch::Device::Cpu);
+    let output = output.argmax(-1, false);
 
-//     println!("Output generated");
-//     let output = tokenizer.decode(&output, false);
-//     let output = cleanup_output(output);
+    println!("Output generated");
+    let output = tokenizer.decode(&output, false);
+    let output = cleanup_output(output);
 
-//     Json(json!({
-//         "Jojo-GPT2": output
-//     }))
-// }
+    Json(json!({
+        "Jojo-GPT2": output
+    }))
+}
 
 // Read catchphrases from file
 async fn read_catchphrases() -> Vec<String> {

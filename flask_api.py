@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, send_from_directory
 from flask_restful import Resource, Api
 import random
 from transformers import TFGPT2LMHeadModel, GPT2Tokenizer
@@ -11,13 +11,19 @@ tokenizer = GPT2Tokenizer.from_pretrained("./jojo-gpt2")
 print("model and tokenizer loaded")
 
 
+@app.route("/favicon.ico")
+def favicon():
+    return send_from_directory(
+        app.root_path, "JojosbizarreAPI.png", mimetype="image/vnd.microsoft.icon"
+    )
+
 class CreateResponse(Resource):
     def get(self, input):
         input_ids = tokenizer.encode(input, return_tensors="pt")
 
         print("generating output")
         output = model.generate(
-            input_ids,
+            input_ids, 
             max_length=30,
             num_beams=1,
             no_repeat_ngram_size=2,
