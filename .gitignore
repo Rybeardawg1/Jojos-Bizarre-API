@@ -7,5 +7,6 @@ output_dir/
 fine_tuned_model/
 jojo-gpt2/
 target/
+quotes.txt
 cargo.lock
 *.pyc

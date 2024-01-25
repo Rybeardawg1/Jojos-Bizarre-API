@@ -12,7 +12,7 @@ Gonna make an NLP model that'll respond to API calls. Maybe make it into a Twitt
 
 <blockquote>
 Show: https://transcripts.foreverdreaming.org/viewforum.phpf=1721 <br>
-https://www.springfieldspringfield.co.uk/episode_scripts.php?tv-show=jojos-bizarre-adventure-2012 <br>
+https://en.wikiquote.org/wiki/JoJo%27s_Bizarre_Adventure <br>
 Manga: picture-to-text scanner maybe? <br>
 Manga: https://mangadex.org/title/136/jojo-s-bizarre-adventure-part-1-phantom-blood <br>
 </blockquote>
@@ -40,6 +40,7 @@ Domain: https://instantdomains.com/search?q=jojosbizarreapi <br>
 https://www.heroku.com/ <br>
 https://www.pythonanywhere.com/ <br>
 https://www.digitalocean.com/ <br>
+https://www.shuttle.rs/<br>
 AWS? <br>
 </blockquote>
 
