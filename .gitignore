@@ -1,5 +1,3 @@
-*.csv
-*.json
 __pycache__/
 cached_lm_GPT2Tokenizer_128_data.txt
 data.txt

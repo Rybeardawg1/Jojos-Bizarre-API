@@ -6,9 +6,9 @@ from transformers import TFGPT2LMHeadModel, GPT2Tokenizer
 app = Flask(__name__)
 api = Api(app)
 
-model = TFGPT2LMHeadModel.from_pretrained("./jojo-gpt2")
-tokenizer = GPT2Tokenizer.from_pretrained("./jojo-gpt2")
-print("model and tokenizer loaded")
+# model = TFGPT2LMHeadModel.from_pretrained("./jojo-gpt2")
+# tokenizer = GPT2Tokenizer.from_pretrained("./jojo-gpt2")
+# print("model and tokenizer loaded")
 
 
 @app.route("/favicon.ico")
@@ -18,38 +18,38 @@ def favicon():
     )
 
 
-class CreateResponse(Resource):
-    def get(self, input):
-        input_ids = tokenizer.encode(input, return_tensors="pt")
+# class CreateResponse(Resource):
+#     def get(self, input):
+#         input_ids = tokenizer.encode(input, return_tensors="pt")
 
-        print("generating output")
-        output = model.generate(
-            input_ids,
-            max_length=30,
-            num_beams=1,
-            no_repeat_ngram_size=2,
-            top_k=50,
-            top_p=0.99,
-            num_return_sequences=1,
-            do_sample=True,
-            temperature=1,
-        )
+#         print("generating output")
+#         output = model.generate(
+#             input_ids,
+#             max_length=30,
+#             num_beams=1,
+#             no_repeat_ngram_size=2,
+#             top_k=50,
+#             top_p=0.99,
+#             num_return_sequences=1,
+#             do_sample=True,
+#             temperature=1,
+#         )
 
-        print("output generated")
-        output = tokenizer.decode(output[0], skip_special_tokens=True)
+#         print("output generated")
+#         output = tokenizer.decode(output[0], skip_special_tokens=True)
 
-        period = output.rfind(".")
-        question_mark = output.rfind("?")
-        exclamation_mark = output.rfind("!")
-        if period > question_mark and period > exclamation_mark:
-            output = output[: output.rfind(".") + 1]
-        elif question_mark > period and question_mark > exclamation_mark:
-            output = output[: output.rfind("?") + 1]
-        elif exclamation_mark > period and exclamation_mark > question_mark:
-            output = output[: output.rfind("!") + 1]
-        output = output.replace("\n", " ")
+#         period = output.rfind(".")
+#         question_mark = output.rfind("?")
+#         exclamation_mark = output.rfind("!")
+#         if period > question_mark and period > exclamation_mark:
+#             output = output[: output.rfind(".") + 1]
+#         elif question_mark > period and question_mark > exclamation_mark:
+#             output = output[: output.rfind("?") + 1]
+#         elif exclamation_mark > period and exclamation_mark > question_mark:
+#             output = output[: output.rfind("!") + 1]
+#         output = output.replace("\n", " ")
 
-        return jsonify({"Jojo-GPT2": output})
+#         return jsonify({"Jojo-GPT2": output})
 
 
 class GetCatchPhrase(Resource):
@@ -79,7 +79,7 @@ class GetCatchPhrase(Resource):
 
 
 api.add_resource(GetCatchPhrase, "/")
-api.add_resource(CreateResponse, "/<string:input>")
+# api.add_resource(CreateResponse, "/<string:input>")
 
 if __name__ == "__main__":
     app.run()
