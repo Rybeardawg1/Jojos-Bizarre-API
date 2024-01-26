@@ -6,6 +6,17 @@ from transformers import TFGPT2LMHeadModel, GPT2Tokenizer
 app = Flask(__name__)
 api = Api(app)
 
+hint = {
+    "Directions": "Add an input to the URL",
+    "Example": "jojosbizarreapi.com/What's 5+5? Response: I don't know but I bet my stand is stronger than that.",
+    "Repo": "https://github.com/Rybeardawg1/Jojos-Bizarre-API/",
+}
+
+
+@app.errorhandler(404)
+def page_not_found(error):
+    return jsonify(hint), 404
+
 # model = TFGPT2LMHeadModel.from_pretrained("./jojo-gpt2")
 # tokenizer = GPT2Tokenizer.from_pretrained("./jojo-gpt2")
 # print("model and tokenizer loaded")
@@ -61,12 +72,6 @@ class GetCatchPhrase(Resource):
 
     def get(self):
         catchphrases = self.get_catchphrases()
-
-        hint = {
-            "Directions": "Add an input to the URL",
-            "Example": "jojosbizarreapi.com/What's 5+5? Response: I don't know but I bet my stand is stronger than that.",
-            "Repo": "https://github.com/Rybeardawg1/Jojos-Bizarre-API/",
-        }
 
         if catchphrases:
             random_catchphrase = random.choice(catchphrases)
