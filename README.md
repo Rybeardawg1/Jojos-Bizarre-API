@@ -1,5 +1,5 @@
 # Jojos-Bizarre-API
-
+<Image src="JojosbizarreAPI.png"> </Image> <br>
 Gonna make an NLP model that'll respond to API calls. Maybe make it into a Twitter bot too or something.. idk
 
 ## To Do:
