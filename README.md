@@ -1,39 +1,45 @@
 # Jojos-Bizarre-API
-<Image src="JojosbizarreAPI.png"> </Image> <br>
+
+<p align="center">
+    <a href="https://jojosbizarreapi.com/">
+        <Image src="JojosbizarreAPI.png" > </Image>
+    </a>
+</p>
+
 Gonna make an NLP model that'll respond to API calls. Maybe make it into a Twitter bot too or something.. idk
 
 ## To Do:
 
 ### Get all Jojo script data<br>
 
-[x] get scripts<br>
-[x] get better formatted scripts for NLP<br>
-~~[] get manga data~~<br>
+ - [x] get scripts<br>
+ - [x] get better formatted scripts for NLP<br>
+ - ~~[] get manga data~~<br>
 
 <blockquote>
 Show: https://transcripts.foreverdreaming.org/viewforum.phpf=1721 <br>
-https://en.wikiquote.org/wiki/JoJo%27s_Bizarre_Adventure <br>
+Important quotes: https://en.wikiquote.org/wiki/JoJo%27s_Bizarre_Adventure <br>
 Manga: picture-to-text scanner maybe? <br>
 Manga: https://mangadex.org/title/136/jojo-s-bizarre-adventure-part-1-phantom-blood <br>
 </blockquote>
 
 ### The API itself
 
-[x] Make REST API that will call model when prompted and return quote when unprompted <br>
-[x] Flask is fucking slow so Rust...? <br>
-[] Axum's output is not rendering backslashes
-[] Rust libraries do not have native support for importing saved model???<br>
+ - [x] Make REST API that will call model when prompted and return quote when unprompted <br>
+ - [x] Flask is fucking slow so Rust...? <br>
+ - [] Axum's output is not rendering backslashes <br>
+ - [] Rust libraries do not have native support for importing saved model???<br>
 
 ### Learn about NLPs
 
-[x] Understand NLP basics<br>
-[x] Train jojo-gpt2<br>
-[x] Train a better one<br>
-[] Train an even better one (last one... hopefully) <br>
+ - [x] Understand NLP basics<br>
+ - [x] Train jojo-gpt2<br>
+ - [x] Train a better one<br>
+ - [] Train an even better one (last one... hopefully) <br>
 
 <blockquote>
-[x] Understand tokenization, stemming, and lemmatization <br>
-[x] Apply/practice concepts<br>
+ - [x] Understand tokenization, stemming, and lemmatization <br>
+ - [x] Apply/practice concepts<br>
 </blockquote>
 
 ### Hosting
@@ -49,6 +55,7 @@ AWS Lambda? <br>
 Digital Ocean Web App 👎BOO tomato tomato tomato <br>
 Digital Ocean [Droplet](https://i.kym-cdn.com/entries/icons/original/000/030/423/cover5.jpg)<br>
 now I just need to containerize my api and deploy it.... hopefully the ssh and droplet resources will be enough to serve the model 🙃 <br>
+
 </blockquote>
 
 ### Running Development Server
