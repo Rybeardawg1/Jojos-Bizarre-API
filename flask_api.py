@@ -1,7 +1,10 @@
 from flask import Flask, jsonify, send_from_directory
 from flask_restful import Resource, Api
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
+from transformers import GPT2LMHeadModel, GPT2Tokenizer
+import concurrent.futures
 import random
-from transformers import TFGPT2LMHeadModel, GPT2Tokenizer
 
 app = Flask(__name__)
 api = Api(app)
@@ -17,9 +20,29 @@ hint = {
 def page_not_found(error):
     return jsonify(hint), 404
 
-# model = TFGPT2LMHeadModel.from_pretrained("./jojo-gpt2")
-# tokenizer = GPT2Tokenizer.from_pretrained("./jojo-gpt2")
-# print("model and tokenizer loaded")
+
+limiter = Limiter(
+    get_remote_address,
+    app=app,
+    default_limits=["10 per hour"],
+    storage_uri="memory://",
+)
+
+
+@app.route("/medium")
+@limiter.limit(
+    "10 per hour", error_message="I'm broke so only 10 requests an hour, boss"
+)
+def slow():
+    return jsonify(
+        {
+            "Message": "This is a limited endpoint and I'm broke so only 10 requests an hour, boss"
+        }
+    )
+
+
+model = GPT2LMHeadModel.from_pretrained("./jojo-gpt2")
+tokenizer = GPT2Tokenizer.from_pretrained("./jojo-gpt2")
 
 
 @app.route("/favicon.ico")
@@ -29,38 +52,47 @@ def favicon():
     )
 
 
-# class CreateResponse(Resource):
-#     def get(self, input):
-#         input_ids = tokenizer.encode(input, return_tensors="pt")
+class CreateResponse(Resource):
+    def get(self, input):
+        with concurrent.futures.ThreadPoolExecutor() as executor:
+            try:
+                future = executor.submit(self.generate_response, input)
+                result = future.result(timeout=10)
+                return result
+            except concurrent.futures.TimeoutError:
+                with open(self.catchphrases_file, "r") as f:
+                    catchphrases = [line.strip() for line in f]
+                    random_catchphrase = random.choice(catchphrases)
+                    return jsonify({"Jojo-GPT2": random_catchphrase})
 
-#         print("generating output")
-#         output = model.generate(
-#             input_ids,
-#             max_length=30,
-#             num_beams=1,
-#             no_repeat_ngram_size=2,
-#             top_k=50,
-#             top_p=0.99,
-#             num_return_sequences=1,
-#             do_sample=True,
-#             temperature=1,
-#         )
+    def generate_response(self, input):
+        input_ids = tokenizer.encode(input, return_tensors="pt")
 
-#         print("output generated")
-#         output = tokenizer.decode(output[0], skip_special_tokens=True)
+        output = model.generate(
+            input_ids,
+            max_length=50,
+            num_beams=1,
+            no_repeat_ngram_size=2,
+            top_k=50,
+            top_p=0.99,
+            num_return_sequences=1,
+            do_sample=True,
+            temperature=1,
+        )
 
-#         period = output.rfind(".")
-#         question_mark = output.rfind("?")
-#         exclamation_mark = output.rfind("!")
-#         if period > question_mark and period > exclamation_mark:
-#             output = output[: output.rfind(".") + 1]
-#         elif question_mark > period and question_mark > exclamation_mark:
-#             output = output[: output.rfind("?") + 1]
-#         elif exclamation_mark > period and exclamation_mark > question_mark:
-#             output = output[: output.rfind("!") + 1]
-#         output = output.replace("\n", " ")
+        output = tokenizer.decode(output[0], skip_special_tokens=True)
 
-#         return jsonify({"Jojo-GPT2": output})
+        period = output.rfind(".")
+        question_mark = output.rfind("?")
+        exclamation_mark = output.rfind("!")
+        if period > question_mark and period > exclamation_mark:
+            output = output[: output.rfind(".") + 1]
+        elif question_mark > period and question_mark > exclamation_mark:
+            output = output[: output.rfind("?") + 1]
+        elif exclamation_mark > period and exclamation_mark > question_mark:
+            output = output[: output.rfind("!") + 1]
+
+        return jsonify({"Jojo-GPT2": output.replace("\n", " ")})
 
 
 class GetCatchPhrase(Resource):
@@ -78,13 +110,13 @@ class GetCatchPhrase(Resource):
             return jsonify({"Catchphrase": random_catchphrase, "Hint": hint})
         else:
             return (
-                jsonify({"message": "Catchphrases not found", "Hint": hint}),
+                jsonify({"Message": "Catchphrases not found", "Hint": hint}),
                 404,
             )
 
 
 api.add_resource(GetCatchPhrase, "/")
-# api.add_resource(CreateResponse, "/<string:input>")
+api.add_resource(CreateResponse, "/<string:input>")
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)

@@ -8,3 +8,4 @@ target/
 quotes.txt
 cargo.lock
 *.pyc
+quotes.txt

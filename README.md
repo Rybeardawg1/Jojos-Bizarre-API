@@ -36,12 +36,16 @@ Apply/practice concepts<br>
 ### Hosting
 
 <blockquote>
-Domain: https://instantdomains.com/search?q=jojosbizarreapi <br>
-https://www.heroku.com/ <br>
+Domain: https://instantdomains.com/search?q=jojosbizarreapi <b>ITS MINE</b><br>
+<s>https://www.heroku.com/</s> <br>
 https://www.pythonanywhere.com/ <br>
 https://www.digitalocean.com/ <br>
-https://www.shuttle.rs/<br>
-AWS? <br>
+<s>https://www.shuttle.rs/</s><br>
+AWS Lambda? <br>
+
+Digital Ocean Web App 👎BOO tomato tomato tomato <br>
+Digital Ocean [Droplet](https://i.kym-cdn.com/entries/icons/original/000/030/423/cover5.jpg)<br>
+now I just need to containerize my api and deploy it.... hopefully the ssh and droplet resources will be enough to serve the model 🙃 <br>
 </blockquote>
 
 ### Running Development Server
@@ -50,8 +54,15 @@ Flask: <br>
 python flask_api.py
 
 Axum: <br>
+If you want to use pytorch instead of libtorch, you may need to follow these instructions: <br>
+pip install torch torchvision torchaudio <br>
 python -m venv C:\Users\Rybeardawg1\AppData\Local\Programs\Python\Python39\Lib\venv <br>
 set LIBTORCH_USE_PYTORCH=1 <br>
 As of now, tch version 0.14.0 crate supports up to PyTorch 2.1.0. If you need to downgrade, use pip install torch==2.1.0<br>
+
+If you want to use libtorch, download here:https://pytorch.org/ and you may need to follow these instructions: <br>
+set LIBTORCH_USE_PYTORCH=0 <br>
+set LIBTORCH_BYPASS_VERSION_CHECK=0<br>
+
 cargo build <br>
 cargo run <br>
