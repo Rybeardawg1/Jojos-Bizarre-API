@@ -18,28 +18,20 @@ async fn get_catchphrase() -> Json<String> {
     let catchphrases = read_catchphrases().await;
 
     let hint =
-        r#"({
-        "Directions": "Add an input to the URL",
-        "Example": "jojosbizarreapi.com/What's 5+5? Response: I don't know but I bet my stand is stronger than that.",
-        "Repo": "https://github.com/Rybeardawg1/Jojos-Bizarre-API/",
-    })"#;
+        r#"
+        Directions: "Add an input to the URL,
+        Example: jojosbizarreapi.com/What's 5+5? Response: I don't know but I bet my stand is stronger than that.,
+        Repo: https://github.com/Rybeardawg1/Jojos-Bizarre-API/"#;
 
     if let Some(random_catchphrase) = catchphrases.choose(&mut rand::thread_rng()) {
         let json_value =
-            json!({
-            "Catchphrase": random_catchphrase,
-            "Hint": hint
-        });
-        let pretty_json = to_string_pretty(&json_value).expect("Failed to format JSON");
-        Json(pretty_json)
+            format!("Catchphrase: {random_catchphrase},\nHint: {hint}");
+        print!("{}", json_value.to_string());
+        Json(json_value)
     } else {
-        Json(
-            json!({
-            "Message": "Catchphrases not found",
-            "Hint": hint
-            }
-            ).to_string()
-        )
+        let json_value = format!(
+            "Message: Catchphrases not found,\nHint: {hint}");
+        Json(json_value)
     }
 }
 

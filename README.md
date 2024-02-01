@@ -7,8 +7,8 @@ Gonna make an NLP model that'll respond to API calls. Maybe make it into a Twitt
 ### Get all Jojo script data<br>
 
 [x] get scripts<br>
-[] get better formatted scripts for NLP<br>
-[] get manga data<br>
+[x] get better formatted scripts for NLP<br>
+~~[] get manga data~~<br>
 
 <blockquote>
 Show: https://transcripts.foreverdreaming.org/viewforum.phpf=1721 <br>
@@ -20,17 +20,20 @@ Manga: https://mangadex.org/title/136/jojo-s-bizarre-adventure-part-1-phantom-bl
 ### The API itself
 
 [x] Make REST API that will call model when prompted and return quote when unprompted <br>
-[] Flask is fucking slow so Rust...? <br>
+[x] Flask is fucking slow so Rust...? <br>
+[] Axum's output is not rendering backslashes
+[] Rust libraries do not have native support for importing saved model???<br>
 
 ### Learn about NLPs
 
 [x] Understand NLP basics<br>
 [x] Train jojo-gpt2<br>
-[] Train a better one<br>
+[x] Train a better one<br>
+[] Train an even better one (last one... hopefully) <br>
 
 <blockquote>
-Understand tokenization, stemming, and lemmatization <br>
-Apply/practice concepts<br>
+[x] Understand tokenization, stemming, and lemmatization <br>
+[x] Apply/practice concepts<br>
 </blockquote>
 
 ### Hosting
