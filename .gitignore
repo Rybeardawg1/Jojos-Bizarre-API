@@ -1,5 +1,6 @@
 /*
 !src/
+!.github/
 *.txt
 !catchphrases.txt
 cargo.lock
