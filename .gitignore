@@ -2,5 +2,5 @@
 !src/
 *.txt
 !catchphrases.txt
+!requirements.txt
 cargo.lock
-*.pyc

@@ -1,7 +1,6 @@
 use axum::{ routing::get, response::Json, Router, http::{ Response, StatusCode } };
 use rand::seq::SliceRandom;
 use tokio::fs;
-use serde_json::{ json, to_string_pretty, Value };
 
 #[tokio::main]
 async fn main() {
@@ -64,28 +63,28 @@ async fn read_catchphrases() -> Vec<String> {
 }
 
 // Clean up generated output
-fn cleanup_output(output: String) -> String {
-    let period = output.rfind('.');
-    let question_mark = output.rfind('?');
-    let exclamation_mark = output.rfind('!');
+// fn cleanup_output(output: String) -> String {
+//     let period = output.rfind('.');
+//     let question_mark = output.rfind('?');
+//     let exclamation_mark = output.rfind('!');
 
-    if let Some(period) = period {
-        if period > question_mark.unwrap_or(0) && period > exclamation_mark.unwrap_or(0) {
-            return output[..=period].to_string();
-        }
-    }
+//     if let Some(period) = period {
+//         if period > question_mark.unwrap_or(0) && period > exclamation_mark.unwrap_or(0) {
+//             return output[..=period].to_string();
+//         }
+//     }
 
-    if let Some(question_mark) = question_mark {
-        if question_mark > period.unwrap_or(0) && question_mark > exclamation_mark.unwrap_or(0) {
-            return output[..=question_mark].to_string();
-        }
-    }
+//     if let Some(question_mark) = question_mark {
+//         if question_mark > period.unwrap_or(0) && question_mark > exclamation_mark.unwrap_or(0) {
+//             return output[..=question_mark].to_string();
+//         }
+//     }
 
-    if let Some(exclamation_mark) = exclamation_mark {
-        if exclamation_mark > period.unwrap_or(0) && exclamation_mark > question_mark.unwrap_or(0) {
-            return output[..=exclamation_mark].to_string();
-        }
-    }
+//     if let Some(exclamation_mark) = exclamation_mark {
+//         if exclamation_mark > period.unwrap_or(0) && exclamation_mark > question_mark.unwrap_or(0) {
+//             return output[..=exclamation_mark].to_string();
+//         }
+//     }
 
-    output.replace('\n', " ")
-}
+//     output.replace('\n', " ")
+// }

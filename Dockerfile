@@ -1,11 +1,30 @@
-FROM messense/rust-musl-cross:x86_64-musl as builder
-WORKDIR /Jojos-Bizarre-API
-# Copy the source code
-COPY . .
-# Build the application
-RUN cargo build --release --target x86_64-unknown-linux-musl
+# Use the official Rust image as a base
+FROM rust:latest
 
-FROM scratch
-COPY --from=builder /Jojos-Bizarre-API/target/x86_64-unknown-linux-musl/release/jojos-bizarre-api /usr/local/bin/jojos-bizarre-api
-ENTRYPOINT ["/usr/local/bin/jojos-bbizarre-api"]
-EXPOSE 3000
+# Install musl-tools and libssl-dev
+RUN apt-get update \
+    && apt-get install -y musl-tools libssl-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set the working directory
+WORKDIR /Jojos-Bizarre-API
+
+# Copy the entire local directory into the container
+COPY . .
+
+# Install the necessary toolchain for the specified target
+RUN rustup target add x86_64-unknown-linux-musl
+
+# Install OpenSSL development headers
+RUN apt-get update \
+    && apt-get install -y pkg-config libssl-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Build your Rust project
+RUN cargo build
+
+# Expose the port your application listens on
+EXPOSE 8080
+
+# Run your application
+CMD ["cargo", "run", "--release"]

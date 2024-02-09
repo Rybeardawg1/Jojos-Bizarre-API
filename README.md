@@ -68,9 +68,8 @@ python -m venv C:\Users\Rybeardawg1\AppData\Local\Programs\Python\Python39\Lib\v
 set LIBTORCH_USE_PYTORCH=1 <br>
 As of now, tch version 0.14.0 crate supports up to PyTorch 2.1.0. If you need to downgrade, use pip install torch==2.1.0<br>
 
-If you want to use libtorch, download here:https://pytorch.org/ and you may need to follow these instructions: <br>
+If you want to use libtorch, download here:https://pytorch.org/ and you may need to set these env variables: <br>
 set LIBTORCH_USE_PYTORCH=0 <br>
 set LIBTORCH_BYPASS_VERSION_CHECK=0<br>
-
 cargo build <br>
 cargo run <br>

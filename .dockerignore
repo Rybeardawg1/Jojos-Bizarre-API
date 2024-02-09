@@ -1,6 +1,9 @@
-/*
-!src/
-*.txt
-!catchphrases.txt
-cargo.lock
-*.pyc
+/jojo-gpt2
+/output_dir
+/target
+Jojo_NLP.ipynb
+requirements.txt
+all_script.txt
+Cargo.lock
+quotes.txt
+*.py
