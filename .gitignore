@@ -3,4 +3,5 @@
 !.github/
 *.txt
 !catchphrases.txt
+!Bakefile
 cargo.lock

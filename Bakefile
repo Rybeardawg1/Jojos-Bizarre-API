@@ -1,0 +1,41 @@
+# Bakefile for Jojo's Bizarre API
+
+# Define the default target platform
+TARGET_PLATFORM=linux/amd64
+
+# Define the default builder instance
+BUILDER=default
+
+# Define the name of the Docker image
+IMAGE_NAME=jojos-bizarre-api
+
+# Define the path to the Dockerfile
+DOCKERFILE=Dockerfile
+
+# Define additional build arguments if needed
+# BUILD_ARGS=
+
+# Define the registry and repository for pushing the image
+REGISTRY=docker.io/Rybeardawg/
+
+# Define cache configurations
+CACHE_FROM=type=local,src=/tmp/.buildx-cache
+CACHE_TO=type=local,dest=/tmp/.buildx-cache
+
+# Build targets
+all: build
+
+# Build target
+build:
+	docker buildx create --use
+	docker buildx bake \
+		--file=$(DOCKERFILE) \
+		--set $(BUILD_ARGS) \
+		--build-arg TARGETPLATFORM=$(TARGET_PLATFORM) \
+		--cache-from=$(CACHE_FROM) \
+		--cache-to=$(CACHE_TO) \
+		--builder=$(BUILDER) \
+		--push \
+		--tag $(REGISTRY)$(IMAGE_NAME):latest
+
+.PHONY: build
