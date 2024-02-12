@@ -20,7 +20,8 @@ async fn get_catchphrase() -> Json<String> {
         r#"
         Directions: "Add an input to the URL,
         Example: jojosbizarreapi.com/What's 5+5? Response: I don't know but I bet my stand is stronger than that.,
-        Repo: https://github.com/Rybeardawg1/Jojos-Bizarre-API/"#;
+        Repo: https://github.com/Rybeardawg1/Jojos-Bizarre-API/
+        "#;
 
     if let Some(random_catchphrase) = catchphrases.choose(&mut rand::thread_rng()) {
         let json_value =
