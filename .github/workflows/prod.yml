@@ -74,11 +74,11 @@ jobs:
       - name: Set up SSH key
         uses: webfactory/ssh-agent@v0.9.0
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          ssh-private-key: ${{ secrets.DROPLET_SSH_KEY_SECRET }}
 
       - name: SSH into Digital Ocean Droplet
         run: |
-          ssh -o StrictHostKeyChecking=no -i ${{ secrets.SSH_PRIVATE_KEY }} root@159.203.125.6 << 'EOF'
+          ssh -o StrictHostKeyChecking=no -i ${{ secrets.DROPLET_SSH_KEY_SECRET }} root@${{vars.DROPLET_IP}} << 'EOF'
             cd Jojos-Bizarre-API/
             git pull origin main
             docker-compose pull
