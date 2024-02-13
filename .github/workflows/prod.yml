@@ -75,8 +75,7 @@ jobs:
         uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.DROPLET_SSH_KEY_SECRET }}
-          script: |
+          ssh-agent-cmd: |
             docker-compose down
             docker-compose pull
             docker-compose up -d
-        
