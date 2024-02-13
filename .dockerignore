@@ -1,6 +1,8 @@
 /jojo-gpt2
 /output_dir
 /target
+/scripting
+/flask
 Jojo_NLP.ipynb
 requirements.txt
 all_script.txt

@@ -76,6 +76,8 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.DROPLET_SSH_KEY_SECRET }}
           ssh-agent-cmd: |
-            docker-compose down
+            ls -a
+            cd Jojos-Bizarre-API/
+            git pull origin main
             docker-compose pull
             docker-compose up -d

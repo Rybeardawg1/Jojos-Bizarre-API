@@ -2,6 +2,9 @@
 !src/
 !.github/
 *.txt
+!flask/
+!scripting/
+!docker-compose.yml
 !catchphrases.txt
 !Bakefile
 cargo.lock
