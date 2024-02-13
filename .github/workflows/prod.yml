@@ -71,23 +71,12 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Install sshpass
-        run: sudo apt-get install sshpass
-
-      - name: Use SSH key
+      - name: SSH In and Deploy 
         uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.DROPLET_SSH_KEY_SECRET }}
-
-      - name: Use SSH key
-        uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.DROPLET_SSH_KEY_SECRET }}
-
-      - name: Deploy
-        run: |
-          ssh -o StrictHostKeyChecking=no -p ${{ secrets.DROPLET_SSH_PORT }} root@${{ secrets.DROPLET_IP }} 'bash -s' << 'ENDSSH'
+          script: |
             docker-compose down
             docker-compose pull
             docker-compose up -d
-          ENDSSH
+        
