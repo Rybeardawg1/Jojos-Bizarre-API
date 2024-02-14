@@ -71,6 +71,9 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       
+      - name: Copy Compose YAML to Droplet
+        run: scp -i ${{ secrets.DROPLET_SSH_KEY_SECRET }} docker-compose.yml root@${{ vars.DROPLET_IP }}:~
+
       - name: SSH In and Deploy 
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -79,7 +82,6 @@ jobs:
           key: ${{ secrets.DROPLET_SSH_KEY_SECRET }}
           port: ${{ secrets.DROPLET_SSH_PORT }}
           script: |
-            scp -o StrictHostKeyChecking=no docker-compose.yml root@${{ vars.DROPLET_IP }}:~
             docker-compose down
             docker-compose pull
             docker-compose up -d
