@@ -7,7 +7,7 @@ async fn main() {
     let app = Router::new().route("/", get(get_catchphrase));
     // Start the server
     axum::Server
-        ::bind(&"127.0.0.1:3000".parse().unwrap())
+        ::bind(&"0.0.0.0:3000".parse().unwrap())
         .serve(app.into_make_service()).await
         .unwrap();
 }
