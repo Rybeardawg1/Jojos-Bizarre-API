@@ -72,12 +72,11 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       
       - name: SSH In and Deploy 
-        uses: appleboy/ssh-action@v0.1.9
+        uses: appleboy/ssh-action@master
         with:
-          key: ${{ secrets.DROPLET_SSH_KEY_SECRET }}
-          username: root
-          password: ${{ secrets.DROPLET_PASSWORD }}
           host: ${{ secrets.HOST }}
+          username: root
+          key: ${{ secrets.DROPLET_SSH_KEY_SECRET }}
           port: ${{ secrets.DROPLET_SSH_PORT }}
           script: |
             cd Jojos-Bizarre-API/
