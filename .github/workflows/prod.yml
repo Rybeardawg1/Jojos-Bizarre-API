@@ -74,7 +74,7 @@ jobs:
       - name: Copy Compose YAML to Droplet
         run: |
           cat << EOF > id_rsa
-          ${{ secrets.DROPLET_SSH_KEY_SECRET }}
+          ${{ secrets.DROPLET_SSH_ID_RSA }}
           EOF
           scp -i id_rsa docker-compose.yml root@${{ vars.DROPLET_IP }}:~
 
