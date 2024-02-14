@@ -72,7 +72,9 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       
       - name: Copy Compose YAML to Droplet
-        run: scp -i ${{ secrets.DROPLET_SSH_KEY_SECRET }} docker-compose.yml root@${{ vars.DROPLET_IP }}:~
+        run: |
+          echo ${{ secrets.DROPLET_SSH_KEY_SECRET }} > /id_rsa
+          scp -i /id_rsa docker-compose.yml root@${{ vars.DROPLET_IP }}:~
 
       - name: SSH In and Deploy 
         uses: appleboy/ssh-action@v1.0.3
