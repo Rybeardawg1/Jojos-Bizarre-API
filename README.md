@@ -14,7 +14,6 @@ Gonna make an NLP model that'll respond to API calls. Maybe make it into a Twitt
 
  - [x] get scripts<br>
  - [x] get better formatted scripts for NLP<br>
-~~ - [ ] get manga data~~<br>
 
 <blockquote>
 Show: https://transcripts.foreverdreaming.org/viewforum.phpf=1721 <br>
@@ -26,9 +25,9 @@ Manga: https://mangadex.org/title/136/jojo-s-bizarre-adventure-part-1-phantom-bl
 ### The API itself
 
  - [x] Make REST API that will call model when prompted and return quote when unprompted <br>
- - [x] Flask is fucking slow so Rust...? <br>
- - [ ] Axum's output is not rendering backslashes <br>
- - [ ] Rust libraries do not have native support for importing saved model???<br>
+ - [x] Flask is lame, learn Rust and use Axum? <br>
+ - [ ] Fix output not rendering newlines <br>
+ - [ ] Figure out how to use Jojo-GPT2 in  Rust <br>
 
 ### Learn about NLPs
 
@@ -52,8 +51,9 @@ AWS Lambda? <br>
 
 Digital Ocean Web App 👎BOO tomato tomato tomato <br>
 Digital Ocean [Droplet](https://i.kym-cdn.com/entries/icons/original/000/030/423/cover5.jpg)<br>
-now I just need to containerize my api and deploy it.... hopefully the ssh and droplet resources will be enough to serve the model 🙃 <br>
-
+- [x] Build and containerize the API
+- [x] Create CI/CD pipeline with GitHub Actions <br>
+- [ ] Deploy API and use domain
 </blockquote>
 
 ### Running Development Server
