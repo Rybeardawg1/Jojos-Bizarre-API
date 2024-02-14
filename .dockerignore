@@ -9,3 +9,5 @@ all_script.txt
 Cargo.lock
 quotes.txt
 *.py
+.git
+.gitignore
