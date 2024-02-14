@@ -80,6 +80,7 @@ jobs:
           port: ${{ secrets.DROPLET_SSH_PORT }}
           script: |
             cd Jojos-Bizarre-API/
+            git pull
             docker-compose down
             docker-compose pull
             docker-compose up -d
