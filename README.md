@@ -51,9 +51,10 @@ AWS Lambda? <br>
 
 Digital Ocean Web App 👎BOO tomato tomato tomato <br>
 Digital Ocean [Droplet](https://i.kym-cdn.com/entries/icons/original/000/030/423/cover5.jpg)<br>
-- [x] Build and containerize the API
+- [x] Build and containerize the API <br>
 - [x] Create CI/CD pipeline with GitHub Actions <br>
-- [ ] Deploy API and use domain
+- [ ] Deploy API and use domain <br>
+- [ ] Store Model on Google Drive lol
 </blockquote>
 
 ### Running Development Server
