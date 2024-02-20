@@ -12,5 +12,5 @@ tokio = { version = "1", features = ["full"] }
 rand = "0.8"
 # rust-bert = "0.22.0"
 lazy_static = "1.4"
-openssl-sys = "0.9"
-openssl = "0.10.37"
+# openssl-sys = "0.9"
+# openssl = "0.10.37"

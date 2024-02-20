@@ -24,7 +24,7 @@ RUN apt-get update \
 RUN cargo build
 
 # Expose the port your application listens on
-EXPOSE 8080
+EXPOSE 3000
 
 # Run your application
 CMD ["cargo", "run", "--release"]

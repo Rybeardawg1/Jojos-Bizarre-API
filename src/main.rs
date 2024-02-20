@@ -1,4 +1,4 @@
-use axum::{ routing::get, response::Json, Router, http::{ Response, StatusCode } };
+use axum::{ routing::get, response::Json, Router };
 use rand::seq::SliceRandom;
 use tokio::fs;
 
@@ -24,13 +24,11 @@ async fn get_catchphrase() -> Json<String> {
         "#;
 
     if let Some(random_catchphrase) = catchphrases.choose(&mut rand::thread_rng()) {
-        let json_value =
-            format!("Catchphrase: {random_catchphrase},\nHint: {hint}");
+        let json_value = format!("Catchphrase: {random_catchphrase},\nHint: {hint}");
         print!("{}", json_value.to_string());
         Json(json_value)
     } else {
-        let json_value = format!(
-            "Message: Catchphrases not found,\nHint: {hint}");
+        let json_value = format!("Message: Catchphrases not found,\nHint: {hint}");
         Json(json_value)
     }
 }
