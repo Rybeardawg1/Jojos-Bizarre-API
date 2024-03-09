@@ -12,8 +12,8 @@ Gonna make an NLP model that'll respond to API calls. Maybe make it into a Twitt
 
 ### Get all Jojo script data<br>
 
- - [x] get scripts<br>
- - [x] get better formatted scripts for NLP<br>
+- [x] get scripts<br>
+- [x] get better formatted scripts for NLP<br>
 
 <blockquote>
 Show: https://transcripts.foreverdreaming.org/viewforum.phpf=1721 <br>
@@ -24,20 +24,20 @@ Manga: https://mangadex.org/title/136/jojo-s-bizarre-adventure-part-1-phantom-bl
 
 ### The API itself
 
- - [x] Make REST API that will call model when prompted and return quote when unprompted <br>
- - [x] Flask is lame, learn Rust and use Axum? <br>
- - [ ] Fix output not rendering newlines <br>
- - [ ] Figure out how to use Jojo-GPT2 in  Rust <br>
+- [x] Make REST API that will call model when prompted and return quote when unprompted <br>
+- [x] Flask is lame, learn Rust and use Axum? <br>
+- [ ] Fix output not rendering newlines <br>
+- [ ] Figure out how to use Jojo-GPT2 in Rust <br>
 
 ### Learn about NLPs
 
- - [x] Understand NLP basics<br>
- - [x] Train jojo-gpt2<br>
- - [x] Train a better one<br>
- - [ ] Train an even better one (last one... hopefully) <br>
+- [x] Understand NLP basics<br>
+- [x] Train jojo-gpt2<br>
+- [x] Train a better one<br>
+- [ ] Test different models Llama 2, GPT-NeoX, GPT-J, Vicuna-13B, XGen-7B<br>
 
- - [x] Understand tokenization, stemming, and lemmatization <br>
- - [x] Apply/practice concepts<br>
+- [x] Understand tokenization, stemming, and lemmatization <br>
+- [x] Apply/practice concepts<br>
 
 ### Hosting
 
@@ -51,10 +51,12 @@ AWS Lambda? <br>
 
 Digital Ocean Web App 👎BOO tomato tomato tomato <br>
 Digital Ocean [Droplet](https://i.kym-cdn.com/entries/icons/original/000/030/423/cover5.jpg)<br>
+
 - [x] Build and containerize the API <br>
 - [x] Create CI/CD pipeline with GitHub Actions <br>
-- [ ] Deploy API and use domain <br>
-- [ ] Store Model on Google Drive lol
+- [x] Deploy API and use domain <br>
+- [x] HTTPS <br>
+- [ ] Manually upload model through SSH or store on Google Drive lol
 </blockquote>
 
 ### Running Development Server

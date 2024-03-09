@@ -6,5 +6,4 @@
 !scripting/
 !docker-compose.yml
 !catchphrases.txt
-!Bakefile
 cargo.lock
